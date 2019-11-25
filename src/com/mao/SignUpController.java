@@ -1,27 +1,21 @@
 package com.mao;
 
-import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
-public class Main extends Application {
+public class SignUpController {
 
-    private Stage stage;
-
-    @Override
-    public void start(Stage primaryStage) throws Exception{
-        this.stage = primaryStage;
-        mainWindow();
+    public void handleClickedLoginBtn(ActionEvent e){
+        createSignUpWindow(e);
     }
 
-
-    private void mainWindow(){
+    private void createSignUpWindow(ActionEvent e){
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
 
@@ -30,17 +24,18 @@ public class Main extends Application {
 
             scene.getStylesheets().addAll(getClass().getResource("style.css").toExternalForm());
             //stage.initStyle(StageStyle.UNDECORATED);
+
+            Stage stage = new Stage();
+
             stage.setTitle("Sign in");
             stage.setScene(scene);
             stage.show();
+
+            ((Node)(e.getSource())).getScene().getWindow().hide();
         }
-        catch (IOException e){
-            e.printStackTrace();
+        catch (IOException err){
+            err.printStackTrace();
         }
 
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }
