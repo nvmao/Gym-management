@@ -18,12 +18,13 @@
                </font>
             </Label>
             <Label layoutX="236.0" layoutY="78.0" prefHeight="45.0" prefWidth="168.0" text="Hello there,start your app and manage your workouts now" textAlignment="CENTER" textFill="#9f9c9c" wrapText="true" />
-            <JFXTextField focusColor="#992169" labelFloat="true" layoutX="211.0" layoutY="157.0" prefHeight="25.0" prefWidth="221.0" promptText="Username" />
-            <JFXPasswordField focusColor="#992169" labelFloat="true" layoutX="211.0" layoutY="221.0" prefHeight="25.0" prefWidth="221.0" promptText="Password" />
-            <JFXButton layoutX="207.0" layoutY="301.0" prefHeight="38.0" prefWidth="104.0" style="-fx-background-color: #f69; -fx-background-radius: 50px;" text="Login" textFill="WHITE" />
+            <JFXTextField fx:id="userNameTextField" focusColor="#992169" labelFloat="true" layoutX="211.0" layoutY="147.0" prefHeight="25.0" prefWidth="221.0" promptText="Username" />
+            <JFXPasswordField fx:id="passTextField" focusColor="#992169" labelFloat="true" layoutX="211.0" layoutY="211.0" prefHeight="25.0" prefWidth="221.0" promptText="Password" />
+            <JFXButton layoutX="207.0" layoutY="301.0" onAction="#loginBtnClicked" prefHeight="38.0" prefWidth="104.0" style="-fx-background-color: #f69; -fx-background-radius: 50px;" text="Login" textFill="WHITE" />
             <Label layoutX="207.0" layoutY="376.0" prefHeight="25.0" prefWidth="104.0" text="Forgot password ?" textAlignment="CENTER" textFill="#9f9c9c" wrapText="true" />
             <Label layoutX="321.0" layoutY="376.0" prefHeight="25.0" prefWidth="118.0" text="Create a new account" textAlignment="CENTER" textFill="#9f9c9c" wrapText="true" />
             <JFXButton fx:id="signUpBtn" layoutX="340.0" layoutY="301.0" onAction="#handleClicked" prefHeight="38.0" prefWidth="104.0" style="-fx-border-color: #f69; -fx-background-radius: 50px; -fx-border-radius: 50px;" text="Sign up" />
+            <Label fx:id="errorLabel" layoutX="211.0" layoutY="269.0" prefHeight="14.0" prefWidth="221.0" text="Wrong username or password" textAlignment="CENTER" textFill="#ff6699" visible="false" />
          </children>
       </Pane>
    </children>

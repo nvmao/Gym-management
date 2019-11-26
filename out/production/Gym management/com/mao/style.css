@@ -2,3 +2,9 @@
     -fx-background-image: url("background.jpg");
     -fx-background-size: cover;
 }
+
+#warningIcon{
+    -fx-background-image: url("warning.png");
+    -fx-background-size: cover;
+    -fx-background-position:center;
+}

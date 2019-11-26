@@ -1,12 +1,15 @@
 package com.mao;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -19,6 +22,28 @@ import java.util.EventListener;
 import java.util.ResourceBundle;
 
 public class LoginController {
+
+    @FXML
+    private JFXTextField userNameTextField;
+    @FXML
+    private JFXPasswordField passTextField;
+
+    @FXML
+    private Label errorLabel;
+
+    public void loginBtnClicked(ActionEvent e){
+        String user = userNameTextField.getText();
+        String pass = passTextField.getText();
+
+        if(Database.getInstance().login(user,pass)){
+            errorLabel.setVisible(false);
+            System.out.println("Login successful");
+        }
+        else{
+            errorLabel.setVisible(true);
+            System.out.println("Wrong");
+        }
+    }
 
     public void handleClicked(ActionEvent e){
         createSignUpWindow(e);

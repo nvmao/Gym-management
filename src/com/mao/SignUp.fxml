@@ -18,12 +18,16 @@
                </font>
             </Label>
             <Label layoutX="236.0" layoutY="59.0" prefHeight="45.0" prefWidth="168.0" text="Hello there,start your app and manage your workouts now" textAlignment="CENTER" textFill="#9f9c9c" wrapText="true" />
-            <JFXTextField focusColor="#992169" labelFloat="true" layoutX="209.0" layoutY="130.0" prefHeight="25.0" prefWidth="221.0" promptText="Username" />
-            <JFXPasswordField focusColor="#992169" labelFloat="true" layoutX="209.0" layoutY="218.0" prefHeight="25.0" prefWidth="221.0" promptText="Password" />
-            <JFXButton layoutX="239.0" layoutY="317.0" prefHeight="38.0" prefWidth="161.0" style="-fx-background-color: #f69; -fx-background-radius: 50px;" text="Sign up" textFill="WHITE" />
+            <JFXTextField fx:id="userNameTextField" focusColor="#992169" labelFloat="true" layoutX="209.0" layoutY="118.0" prefHeight="25.0" prefWidth="221.0" promptText="Username" />
+            <JFXPasswordField fx:id="passTextField" focusColor="#992169" labelFloat="true" layoutX="209.0" layoutY="212.0" prefHeight="25.0" prefWidth="221.0" promptText="Password" />
+            <JFXButton fx:id="signUpBtn" layoutX="239.0" layoutY="317.0" onAction="#handelClickedSignUpBtn" prefHeight="38.0" prefWidth="161.0" style="-fx-background-color: #f69; -fx-background-radius: 50px;" text="Sign up" textFill="WHITE" />
             <JFXButton layoutX="268.0" layoutY="371.0" onAction="#handleClickedLoginBtn" prefHeight="38.0" prefWidth="104.0" style="-fx-border-color: #f69; -fx-background-radius: 50px; -fx-border-radius: 50px;" text="Login" />
-            <JFXTextField focusColor="#992169" labelFloat="true" layoutX="209.0" layoutY="175.0" prefHeight="25.0" prefWidth="221.0" promptText="Email" />
-            <JFXPasswordField focusColor="#992169" labelFloat="true" layoutX="209.0" layoutY="268.0" prefHeight="25.0" prefWidth="221.0" promptText="Comfirm password" />
+            <JFXTextField fx:id="emailTextField" focusColor="#992169" labelFloat="true" layoutX="209.0" layoutY="163.0" prefHeight="25.0" prefWidth="221.0" promptText="Email" />
+            <JFXPasswordField fx:id="confirmPassTextField" focusColor="#992169" labelFloat="true" layoutX="210.0" layoutY="262.0" prefHeight="25.0" prefWidth="221.0" promptText="Comfirm password" />
+            <Label id="warningIcon" fx:id="userWarnIcon" layoutX="439.0" layoutY="118.0" prefHeight="25.0" prefWidth="25.0" visible="false" />
+            <Label id="warningIcon" fx:id="emailWarnIcon" layoutX="438.0" layoutY="163.0" prefHeight="25.0" prefWidth="25.0" visible="false" />
+            <Label id="warningIcon" fx:id="passWarnIcon" layoutX="438.0" layoutY="212.0" prefHeight="25.0" prefWidth="25.0" visible="false" />
+            <Label id="warningIcon" fx:id="confirmWarnIcon" layoutX="439.0" layoutY="262.0" prefHeight="25.0" prefWidth="25.0" visible="false" />
          </children>
       </Pane>
    </children>
