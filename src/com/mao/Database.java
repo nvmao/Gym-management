@@ -13,12 +13,16 @@ public class Database {
         return instance;
     }
 
-    Connection con;
+    private Connection con;
+
+    public static void main(String args[]){
+        new Database();
+    }
 
     private Database(){
         try{
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Gym?useSSL=false&autoReconnect=true","root","rtyfghvb");
-
+            con = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/Jzvp3MDZ5S?useSSL=false&autoReconnect=true","Jzvp3MDZ5S","gtr4qNL8rT");
+            System.out.println("Connect to database server successful");
         }catch (SQLException e){
             System.out.println(e);
         }
@@ -67,7 +71,7 @@ public class Database {
     }
 
    public int addUser(String email,String username,String pass){
-        String query = "insert into Users values(?,?,?)";
+        String query = "insert into Users(email,username,password) values(?,?,?)";
         int result = 0;
         try{
             PreparedStatement ps = con.prepareStatement(query);

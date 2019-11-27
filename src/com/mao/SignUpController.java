@@ -89,6 +89,7 @@ public class SignUpController implements Initializable {
             return;
         }
 
+        SendEmail.sendMail(email);
         if(Database.getInstance().addUser(email,username,pass)==1){
             createLoginWindow(e);
         }
