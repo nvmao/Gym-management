@@ -23,7 +23,7 @@ public class Main extends Application {
 
     private void mainWindow(){
         try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
 
             AnchorPane root = loader.load();
             Scene scene =  new Scene(root);
