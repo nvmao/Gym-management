@@ -23,7 +23,7 @@ public class Main extends Application {
 
     private void mainWindow(){
         try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
 
             AnchorPane root = loader.load();
             Scene scene =  new Scene(root);
@@ -32,6 +32,7 @@ public class Main extends Application {
             //stage.initStyle(StageStyle.UNDECORATED);
             stage.setTitle("Sign in");
             stage.setScene(scene);
+
             stage.show();
         }
         catch (IOException e){

@@ -7,7 +7,7 @@ import java.util.Properties;
 
 public class SendEmail {
 
-    public static void sendMail(String recepient) {
+    public static void sendMail(String recepient,String code) {
         System.out.println("Preparing message");
         Properties properties = new Properties();
 
@@ -26,7 +26,7 @@ public class SendEmail {
             }
         });
 
-        Message message = prepareMessage(session,myEmail,recepient);
+        Message message = prepareMessage(session,myEmail,recepient,code);
         try {
             Transport.send(message);
         } catch (MessagingException e) {
@@ -35,14 +35,14 @@ public class SendEmail {
         System.out.println("Send message successful");
     }
 
-    private static Message prepareMessage(Session session,String email,String recepient){
+    private static Message prepareMessage(Session session,String email,String recepient,String code){
         Message message = new MimeMessage(session);
         try {
             message.setFrom(new InternetAddress(email));
             message.setRecipient(Message.RecipientType.TO,new InternetAddress(recepient));
 
             message.setSubject("Please confirm your account");
-            String htmlCode = String.format("<h1>Hello %s </h1> <br> <p> To confirm your account: <a href='http://youtube.com'> Click here</a> </p>",recepient);
+            String htmlCode = String.format("<h3>Hello %s </h3> <br> <p> Code To confirm your account: <h1>%s<h1> </p>",recepient,code);
             message.setContent(htmlCode,"text/html");
 
             return message;
@@ -54,8 +54,5 @@ public class SendEmail {
         return null;
     }
 
-    public static void main(String arg[]){
-        SendEmail.sendMail("newman33399@gmail.com");
-    }
 
 }

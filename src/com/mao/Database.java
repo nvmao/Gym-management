@@ -28,7 +28,7 @@ public class Database {
         }
     }
 
-    public boolean login(String username,String pass){
+    public User login(String username,String pass){
         String query = "select * from Users where username = ? and password= ? ";
         try{
             PreparedStatement ps = con.prepareStatement(query);
@@ -36,12 +36,15 @@ public class Database {
             ps.setString(2,pass);
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
-                return true;
+                String email = rs.getString("email");
+                String user = rs.getString("username");
+                int confirm = rs.getInt("confirm");
+                return new User(email,user,confirm);
             }
         }catch (Exception e){
             System.out.println(e);
         }
-        return false;
+        return null;
     }
 
     public boolean existedUser(String username){

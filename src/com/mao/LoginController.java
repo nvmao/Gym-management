@@ -32,17 +32,24 @@ public class LoginController {
     private Label errorLabel;
 
     public void loginBtnClicked(ActionEvent e){
-        String user = userNameTextField.getText();
+        String username = userNameTextField.getText();
         String pass = passTextField.getText();
 
-        if(Database.getInstance().login(user,pass)){
-            errorLabel.setVisible(false);
-            System.out.println("Login successful");
+        errorLabel.setVisible(false);
+        User user = Database.getInstance().login(username,pass);
+        if(user == null){
+            errorLabel.setVisible(true);
+            return;
+        }
+
+        Data.getInstance().setUser(new User(user.getEmail(),user.getUsername(),user.getConfirm()));
+        if(user.getConfirm() == 0){
+            createConfirmWindow(e);
         }
         else{
-            errorLabel.setVisible(true);
-            System.out.println("Wrong");
+            createHomeWindow(e);
         }
+
     }
 
     public void handleClicked(ActionEvent e){
@@ -61,6 +68,52 @@ public class LoginController {
 
             Stage stage = new Stage();
 
+            stage.setTitle("Sign in");
+            stage.setScene(scene);
+            stage.show();
+
+            ((Node)(e.getSource())).getScene().getWindow().hide();
+        }
+        catch (IOException err){
+            err.printStackTrace();
+        }
+
+    }
+
+    private void createHomeWindow(ActionEvent e){
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
+
+            AnchorPane root = loader.load();
+            Scene scene =  new Scene(root);
+
+            scene.getStylesheets().addAll(getClass().getResource("style.css").toExternalForm());
+            //stage.initStyle(StageStyle.UNDECORATED);
+
+            Stage stage = new Stage();
+            stage.setTitle("Sign in");
+            stage.setScene(scene);
+            stage.show();
+
+            ((Node)(e.getSource())).getScene().getWindow().hide();
+        }
+        catch (IOException err){
+            err.printStackTrace();
+        }
+
+    }
+
+    private void createConfirmWindow(ActionEvent e){
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Confirm.fxml"));
+
+            AnchorPane root = loader.load();
+            Scene scene =  new Scene(root);
+
+            scene.getStylesheets().addAll(getClass().getResource("style.css").toExternalForm());
+            //stage.initStyle(StageStyle.UNDECORATED);
+
+            Stage stage = new Stage();
             stage.setTitle("Sign in");
             stage.setScene(scene);
             stage.show();
