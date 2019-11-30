@@ -26,4 +26,13 @@ public class User {
     public void setConfirm(int confirm) {
         this.confirm = confirm;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "email='" + email + '\'' +
+                ", username='" + username + '\'' +
+                ", confirm=" + confirm +
+                '}';
+    }
 }

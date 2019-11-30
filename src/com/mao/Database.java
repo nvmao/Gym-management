@@ -15,7 +15,7 @@ public class Database {
 
     private Connection con;
 
-    public static void main(String args[]){
+    public static void main(String[] args){
         new Database();
     }
 
@@ -24,6 +24,17 @@ public class Database {
             con = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/Jzvp3MDZ5S?useSSL=false&autoReconnect=true","Jzvp3MDZ5S","gtr4qNL8rT");
             System.out.println("Connect to database server successful");
         }catch (SQLException e){
+            System.out.println(e);
+        }
+    }
+
+    public void confirmEmail(String email){
+        String query = "update Users set confirm =  1 where email = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1,email);
+            ps.executeUpdate();
+        }catch (Exception e){
             System.out.println(e);
         }
     }

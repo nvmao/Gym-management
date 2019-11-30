@@ -19,9 +19,9 @@
          </font>
       </Label>
       <JFXTextField fx:id="codeTextField" labelFloat="true" layoutX="238.0" layoutY="251.0" prefHeight="26.0" prefWidth="287.0" promptText="Vertification code" unFocusColor="#8c9a15" />
-      <JFXButton fx:id="confirmBtn" layoutX="309.0" layoutY="343.0" onAction="#submitCode" prefHeight="36.0" prefWidth="143.0" style="-fx-background-color: #f69;" text="CONFIRM" textFill="WHITE" />
-      <Label fx:id="resendLabel" layoutX="346.0" layoutY="401.0" prefHeight="18.0" prefWidth="70.0" text="Resend code" textFill="#004e9c" />
+      <JFXButton fx:id="confirmBtn" layoutX="309.0" layoutY="326.0" onAction="#submitCode" prefHeight="36.0" prefWidth="143.0" style="-fx-background-color: #f69;" text="CONFIRM" textFill="WHITE" />
+      <Label fx:id="resendLabel" layoutX="346.0" layoutY="384.0" prefHeight="18.0" prefWidth="70.0" text="Resend code" textFill="#004e9c" />
       <Label fx:id="errorLabel" layoutX="268.0" layoutY="296.0" prefHeight="18.0" prefWidth="226.0" text="Your cofirm code was incorrect or expired" textFill="#9c001c" visible="false" />
-      <JFXProgressBar fx:id="progressBar" layoutX="281.0" layoutY="326.0" prefHeight="4.0" visible="false" />
+      <JFXProgressBar fx:id="progressBar" layoutX="224.0" layoutY="25.0" prefHeight="4.0" prefWidth="314.0" visible="false" />
    </children>
 </AnchorPane>

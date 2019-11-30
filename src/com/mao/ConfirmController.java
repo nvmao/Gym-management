@@ -7,10 +7,16 @@ import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -65,8 +71,8 @@ public class ConfirmController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         generateCode();
 
-        //SendEmail.sendMail(Data.getInstance().getUser().getEmail(),randomCode);
         textLabel.setText(textLabel.getText() + Data.getInstance().getUser().getEmail());
+        new Thread(new ResendEmail(randomCode,progressBar,confirmBtn,codeTextField,resendLabel)).start();
 
         resendLabel.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -77,12 +83,13 @@ public class ConfirmController implements Initializable {
 
             }
         });
-
     }
 
     public void submitCode(ActionEvent e){
         if(codeTextField.getText().equals(randomCode)){
             errorLabel.setVisible(false);
+            Database.getInstance().confirmEmail(Data.getInstance().getUser().getEmail());
+            createHomeWindow(e);
         }
         else{
             errorLabel.setVisible(true);
@@ -99,5 +106,28 @@ public class ConfirmController implements Initializable {
         }
 
         randomCode = code;
+    }
+
+    private void createHomeWindow(ActionEvent e){
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
+
+            AnchorPane root = loader.load();
+            Scene scene =  new Scene(root);
+
+            scene.getStylesheets().addAll(getClass().getResource("style.css").toExternalForm());
+            //stage.initStyle(StageStyle.UNDECORATED);
+
+            Stage stage = new Stage();
+            stage.setTitle("Sign in");
+            stage.setScene(scene);
+            stage.show();
+
+            ((Node)(e.getSource())).getScene().getWindow().hide();
+        }
+        catch (IOException err){
+            err.printStackTrace();
+        }
+
     }
 }

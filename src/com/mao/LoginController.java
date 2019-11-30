@@ -2,8 +2,13 @@ package com.mao;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXProgressBar;
 import com.jfoenix.controls.JFXTextField;
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -27,29 +32,58 @@ public class LoginController {
     private JFXTextField userNameTextField;
     @FXML
     private JFXPasswordField passTextField;
-
     @FXML
     private Label errorLabel;
+    @FXML
+    private JFXButton loginBtn;
+    @FXML
+    private JFXButton signUpBtn;
+    @FXML
+    private JFXProgressBar progressBar;
+    private Service<Void> thread;
 
     public void loginBtnClicked(ActionEvent e){
-        String username = userNameTextField.getText();
-        String pass = passTextField.getText();
 
-        errorLabel.setVisible(false);
-        User user = Database.getInstance().login(username,pass);
-        if(user == null){
-            errorLabel.setVisible(true);
-            return;
-        }
+        thread = new Service<Void>() {
+            @Override
+            protected Task<Void> createTask() {
+                return new Task<Void>() {
+                    @Override
+                    protected Void call() throws Exception {
+                        String username = userNameTextField.getText();
+                        String pass = passTextField.getText();
 
-        Data.getInstance().setUser(new User(user.getEmail(),user.getUsername(),user.getConfirm()));
-        if(user.getConfirm() == 0){
-            createConfirmWindow(e);
-        }
-        else{
-            createHomeWindow(e);
-        }
+                        progressBar.setVisible(true);
+                        loginBtn.setDisable(true);
+                        signUpBtn.setDisable(true);
 
+                        User user = Database.getInstance().login(username,pass);
+                        progressBar.setVisible(false);
+                        loginBtn.setDisable(false);
+                        signUpBtn.setDisable(false);
+
+                        errorLabel.setVisible(false);
+                        if(user == null){
+                            errorLabel.setVisible(true);
+                            return null;
+                        }
+                        Data.getInstance().setUser(new User(user.getEmail(),user.getUsername(),user.getConfirm()));
+                        return null;
+                    }
+                };
+            }
+        };
+
+        thread.setOnSucceeded(event -> {
+            if( Data.getInstance().getUser() != null&& Data.getInstance().getUser().getConfirm() == 0){
+                createConfirmWindow(e);
+            }
+            else{
+                createHomeWindow(e);
+            }
+        });
+
+        thread.restart();
     }
 
     public void handleClicked(ActionEvent e){

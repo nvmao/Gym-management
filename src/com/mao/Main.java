@@ -10,6 +10,8 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
+//--add-modules java.activation
+
 public class Main extends Application {
 
     private Stage stage;
@@ -19,7 +21,6 @@ public class Main extends Application {
         this.stage = primaryStage;
         mainWindow();
     }
-
 
     private void mainWindow(){
         try{
