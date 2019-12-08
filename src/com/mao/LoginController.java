@@ -26,7 +26,7 @@ import java.net.URL;
 import java.util.EventListener;
 import java.util.ResourceBundle;
 
-public class LoginController {
+public class LoginController implements Initializable {
 
     @FXML
     private JFXTextField userNameTextField;
@@ -41,6 +41,12 @@ public class LoginController {
     @FXML
     private JFXProgressBar progressBar;
     private Service<Void> thread;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        userNameTextField.setText("nvmao");
+        passTextField.setText("rtyfghvb12@");
+    }
 
     public void loginBtnClicked(ActionEvent e){
 
@@ -78,7 +84,7 @@ public class LoginController {
             if( Data.getInstance().getUser() != null&& Data.getInstance().getUser().getConfirm() == 0){
                 createConfirmWindow(e);
             }
-            else{
+            else if(Data.getInstance().getUser() != null){
                 createHomeWindow(e);
             }
         });
@@ -159,4 +165,6 @@ public class LoginController {
         }
 
     }
+
+
 }
