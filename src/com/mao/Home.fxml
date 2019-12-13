@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -14,15 +15,34 @@
          <children>
             <ImageView fx:id="menuBtn" fitHeight="32.0" fitWidth="55.0" layoutX="14.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@menu.png" />
+                  <Image url="@../Image/Icon/menu.png" />
                </image>
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="exercisePane" layoutY="50.0" prefHeight="500.0" prefWidth="896.0" style="-fx-background-color: #f99;" />
       <AnchorPane fx:id="homePane" layoutY="49.0" prefHeight="500.0" prefWidth="896.0" style="-fx-background-color: #f69;" />
-      <AnchorPane fx:id="opacityPane" opacity="0.0" prefHeight="550.0" prefWidth="896.0" style="-fx-background-color: #000;" />
-      <AnchorPane fx:id="menuPane" layoutY="50.0" prefHeight="500.0" prefWidth="242.0" style="-fx-background-color: #91bac7;" AnchorPane.leftAnchor="0.0">
+      <AnchorPane fx:id="exercisePane" layoutY="50.0" prefHeight="500.0" prefWidth="896.0" style="-fx-background-color: #f99;">
+         <children>
+            <AnchorPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <ScrollPane hbarPolicy="NEVER" prefHeight="507.0" prefWidth="896.0">
+                    <content>
+                      <AnchorPane fx:id="exerciseMainPane" minHeight="0.0" minWidth="0.0" prefHeight="504.0" prefWidth="892.0">
+                           <children>
+                              <ImageView fitHeight="54.0" fitWidth="62.0" layoutX="786.0" layoutY="388.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Image/Icon/plus.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
+         </children></AnchorPane>
+      <AnchorPane fx:id="opacityPane" opacity="0.0" prefHeight="550.0" prefWidth="896.0" style="-fx-background-color: #000;" visible="false" />
+      <AnchorPane fx:id="menuPane" layoutY="50.0" prefHeight="500.0" prefWidth="242.0" style="-fx-background-color: #91bac7;" visible="false" AnchorPane.leftAnchor="0.0">
          <children>
             <GridPane layoutX="20.0" layoutY="129.0" prefHeight="345.0" prefWidth="202.0" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="129.0">
               <columnConstraints>

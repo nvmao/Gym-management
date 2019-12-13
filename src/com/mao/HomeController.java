@@ -23,13 +23,13 @@ import java.util.ResourceBundle;
 public class HomeController implements Initializable {
 
     @FXML
-    private AnchorPane menuPane,opacityPane, exercisePane,homePane;
+    private AnchorPane menuPane,opacityPane, exercisePane,homePane,exerciseMainPane;
 
     @FXML
     private ImageView menuBtn;
 
     @FXML
-    private ImageView avatarImageView;
+    private ImageView avatarImageView,addExerciseIcon;
 
     @FXML
     private JFXButton exercisesBtn,homeBtn;
@@ -38,6 +38,8 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        menuPane.setVisible(true);
+
         paneTable = new Hashtable<String,AnchorPane>();
         paneTable.put("excercisePane", exercisePane);
         paneTable.put("homePane",homePane);
@@ -52,6 +54,14 @@ public class HomeController implements Initializable {
             showPane("homePane");
         });
 
+
+        addExerciseIcon.setOnMouseClicked(event -> {
+            Data.getInstance().getExercisesListModel().add(null);
+        });
+
+        Data.getInstance().setExercisesListModel(new ExercisesListModel(exerciseMainPane));
+
+
     }
 
     private void showPane(String pane){
@@ -64,7 +74,7 @@ public class HomeController implements Initializable {
     }
 
     private void initAvatar(){
-        Image im = new Image("/com/mao/mao.jpg",false);
+        Image im = new Image("/com/Image/mao.jpg",false);
         avatarImageView.setImage(im);
 
         Rectangle clip = new Rectangle(avatarImageView.getFitWidth(),avatarImageView.getFitHeight());

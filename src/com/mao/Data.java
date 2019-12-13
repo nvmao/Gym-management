@@ -2,6 +2,7 @@ package com.mao;
 
 public class Data {
     private User user;
+    private ExercisesListModel exercisesListModel;
 
     private static Data instance;
 
@@ -14,6 +15,14 @@ public class Data {
 
     public User getUser() {
         return user;
+    }
+
+    public ExercisesListModel getExercisesListModel() {
+        return exercisesListModel;
+    }
+
+    public void setExercisesListModel(ExercisesListModel exercisesListModel) {
+        this.exercisesListModel = exercisesListModel;
     }
 
     public void setUser(User user) {
