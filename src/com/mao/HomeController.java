@@ -54,9 +54,10 @@ public class HomeController implements Initializable {
             showPane("homePane");
         });
 
-
         addExerciseIcon.setOnMouseClicked(event -> {
             Data.getInstance().getExercisesListModel().add(null);
+            addExerciseIcon.toFront();
+
         });
 
         Data.getInstance().setExercisesListModel(new ExercisesListModel(exerciseMainPane));
@@ -95,6 +96,8 @@ public class HomeController implements Initializable {
 
         // store the rounded image in the imageView.
         avatarImageView.setImage(image);
+
+
 
     }
 
